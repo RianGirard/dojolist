@@ -1,0 +1,122 @@
+.top {
+    margin-top: 50px;
+}
+
+.mid-left, .mid-right {
+    border-right: 1px rgb(182, 182, 182) solid;
+    border-left: 1px rgb(182, 182, 182) solid;
+    background-color: rgb(247, 244, 244);
+    text-align: center;
+    color: blue;
+}
+
+.mid-center {
+    text-align: left;
+}
+
+.inner-box {
+    text-align: left;
+    margin: 25px;
+    padding: 0px 0px 10px 0px;
+}
+
+.community {
+    border-top: 1px rgb(182, 182, 182) solid;
+    border-bottom: 1px rgb(182, 182, 182) solid;
+    font-size: 20pt;
+    padding-left: 20px;
+    background-color: rgb(247, 244, 244);
+}
+
+a {
+    color: blue;
+}
+
+a:hover {
+    background-color: rgb(247, 244, 244);
+    text-decoration: none;
+}
+
+.head {
+    background-color: rgb(247, 244, 244);
+    text-align: center;
+    font-weight:500;
+    margin: 0px;
+    padding: 0px;
+    color: blue;
+}
+
+.list {
+    margin-left: 20px;
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 24pt;
+}
+
+.select {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.subhead {
+    font-size: 16pt;
+    margin-left: 20px;
+}
+
+.indent {
+    padding-left: 10px;
+}
+
+.right {
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+/* calendar styles follow  */
+
+.calendar {
+    margin: auto;
+    font-size: 10px;
+}
+
+.calendar tr, .calendar td {
+    border: 1px solid black;
+}
+
+.calendar th {
+    padding: 6px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.calendar td {
+    width: 20px;
+    height: 15px;
+    padding: 20px 0px 0px 0px;
+}
+
+/* .month {
+    font-size: 25px;
+}
+*/
+.date {
+    font-size: 11px;
+} 
+
+ul {
+    height: 100%;
+    padding: 0px 5px 0px 20px;
+}
+
+/* * {
+    outline: 1px black solid;
+} */
+
+.clearfix {
+    margin: 15px;
+}

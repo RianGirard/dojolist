@@ -1,0 +1,58 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Create a New Post{% endblock %}
+
+{% block lower-box %}
+
+<form action="/post/create_post" method="post">
+    {% csrf_token %}
+    <div class="form-group">
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <span class="subhead">Create a new post</span>&emsp; of:
+                <select name="type" required>
+                    <option selected>Type</option>
+                    <option value="forsale">For Sale</option>
+                    <option value="housing">Housing</option>
+                    <option value="events">Events</option>
+                    <option value="jobs">Jobs</option>
+                </select>&emsp; in:
+                <select name="community" required>
+                    <option selected>Community</option>
+                    <option value="seattle">Seattle</option>
+                    <option value="dallas">Dallas</option>
+                    <option value="philadelphia">Philadelphia</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="title" class="form-control" placeholder="Title" required>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <textarea class="form-control" rows="7" name="description" placeholder="Description" required></textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="zipcode" placeholder="5-digit zip code (if applies)">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="date" class="form-control" onfocus="(this.type='date')" placeholder="Date (if applies)">
+            </div>
+        </div>
+        
+    </div>
+
+    <button class="btn btn-primary btn-sm right">Create Post</button>
+</form>
+{% endblock %}

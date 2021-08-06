@@ -1,0 +1,67 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}{{ post.title }}{% endblock %}
+
+{% block lower-box %}
+
+{% if post.type == 'forsale' %} 
+    <span>For Sale</span>
+{% endif %} 
+
+{% if post.type == 'housing' %} 
+    <span>Housing</span>
+{% endif %}
+
+{% if post.type == 'events' %} 
+    <span>Events</span>
+{% endif %}
+
+{% if post.type == 'jobs' %} 
+    <span>Jobs</span>
+{% endif %}
+in {{ post.community|title }}:
+<hr>
+<form action="/">
+    <div class="form-group">
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="title" class="form-control" value="{{ post.title }}" readonly>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <textarea class="form-control" rows="7" name="description" readonly>{{ post.description }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="zipcode" value="Zip code: {{ post.zipcode }}" readonly>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="date" class="form-control" value="Date: {{ post.date|date:"n-d-Y" }}" readonly>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" class="form-control" value='Contact:  "{{ post.publisher.alias }}"  at  {{ post.publisher.email }}' readonly>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input class="btn btn-outline-primary btn-sm" type="submit" value="Back">
+            </div>
+        </div>
+    </div>
+</form>
+{% if user.id == post.publisher.id %}
+    <a href="/post/edit/{{ post.id }}"><button class="btn btn-outline-primary btn-sm right">Edit Post</button></a>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,52 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Index Page{% endblock %}
+
+{% block mid-left %}
+    
+{% endblock %}
+
+{% block mid-center %}
+    <div class="community">{{ community|title }}</div>
+
+{% endblock %}
+
+{% block mid-right %}
+
+{% endblock %}
+
+{% block inner-top-left %}
+    <div class="head">For Sale</div><br>
+    {% for post in forsaleposts %}
+        {% if community == post.community %}
+            <span class="list"><a href="/post/{{ post.id }}">{{ post.title }}</a><br></span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block inner-top-right %}
+    <div class="head">Housing</div><br>
+    {% for post in housingposts %}
+        {% if community == post.community %}
+            <span class="list"><a href="/post/{{ post.id }}">{{ post.title }}</a><br></span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block inner-bot-left %}
+    <div class="head">Events</div><br>
+    {% for post in eventposts %}
+        {% if community == post.community %}
+            <span class="list"><a href="/post/{{ post.id }}">{{ post.title }}</a><br></span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+
+{% block inner-bot-right %}
+    <div class="head">Jobs</div><br>
+    {% for post in jobsposts %}
+        {% if community == post.community %}
+            <span class="list"><a href="/post/{{ post.id }}">{{ post.title }}</a><br></span>
+        {% endif %}
+    {% endfor %}
+{% endblock %}

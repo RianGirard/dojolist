@@ -1,0 +1,17 @@
+{% extends 'mainapp/base.html' %}
+
+{% block mid-center %} 
+
+    <h1>Search Results{% if not object_list %}: none{% endif %}</h1>
+
+    <ul>
+        {% for post in object_list %}
+            <li>
+                <a href="/post/{{ post.id }}">{{ post.community|title }}, {{ post.type|title }}: {{ post.title }}</a>
+            </li>
+            <br>
+        {% endfor %}
+        
+    </ul>
+
+{% endblock %} 

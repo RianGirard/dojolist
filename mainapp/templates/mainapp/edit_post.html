@@ -1,0 +1,66 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Edit Post{% endblock %}
+
+{% block lower-box %}
+
+<form action="/post/update_post/{{ post.id }}" method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <span class="subhead">Update your post:</span>&emsp;
+                <select name="type" required>
+                    <option>Type</option>
+                    <option value="forsale" {% if post.type == "forsale" %}selected{% endif %}>For Sale</option>
+                    <option value="housing" {% if post.type == "housing" %}selected{% endif %}>Housing</option>
+                    <option value="events" {% if post.type == "events" %}selected{% endif %}>Events</option>
+                    <option value="jobs" {% if post.type == "jobs" %}selected{% endif %}>Jobs</option>
+                </select>&emsp; in:
+                <select name="community" required>
+                    <option>Community</option>
+                    <option value="seattle" {% if post.community == "seattle" %}selected{% endif %}>Seattle</option>
+                    <option value="dallas" {% if post.community == "dallas" %}selected{% endif %}>Dallas</option>
+                    <option value="philadelphia" {% if post.community == "philadelphia" %}selected{% endif %}>Philadelphia</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="title" class="form-control" placeholder="Title" value="{{ post.title }}" required>
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <textarea class="form-control" rows="7" name="description" placeholder="Description"  required>{{ post.description }}</textarea>
+            </div>
+        </div>
+
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" class="form-control" name="zipcode" value="{{ post.zipcode }}" placeholder="5-digit zip code (if applies)">
+            </div>
+        </div>
+        
+        <div class="form-group row">
+            <div class="col-sm">
+                <input type="text" name="date" class="form-control" onfocus="(this.type='date')" value="{{ post.date|date:"Y-m-d" }}" placeholder="Date (if applies)">
+            </div>
+        </div>
+        
+        <div class="custom-control custom-checkbox">
+            <input type="checkbox" class="custom-control-input" name="archive" id="customCheck1" {% if post.archive == True %}checked{% endif %}>
+            <label class="custom-control-label" for="customCheck1">Archive?</label>
+        </div>
+    </div>
+    <input class="btn btn-outline-primary btn-sm" type="submit" value="Update Post">
+</form>
+
+<form action="/post/destroy/{{ post.id }}" method="POST">
+    {%csrf_token%}
+    <input class="btn btn-outline-danger btn-sm right" type="submit" value="Delete Post">
+</form>
+{% endblock %}

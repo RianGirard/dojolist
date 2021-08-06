@@ -1,0 +1,23 @@
+{% extends 'mainapp/base.html' %}
+
+{% block title %}Welcome {{ user.name }} aka: {{ user.alias }}{% endblock %}
+
+{% block mid-center %}
+<span class="subhead subindent">Welcome {{ user.name }} aka: "{{ user.alias }}"</span><span class="right" ><a href="/logout" >logout</a></span>
+
+{% endblock %} 
+
+{% block inner-top-left %} 
+    <h6>Current posts: </h6>
+    {%for x in currentposts%}
+        <p class="indent" ><a href="post/edit/{{ x.id }}">{{ x.title }} ({{ x.community|title }})</a></p>
+    {% endfor %} 
+{% endblock %} 
+
+{% block inner-top-right %} 
+    <h6>Archived posts:</h6>
+    {%for x in archivedposts%}
+        <p class="indent" ><a href="post/edit/{{ x.id }}">{{ x.title }} ({{ x.community|title }})</a></p>
+    {% endfor %} 
+
+{% endblock %} 

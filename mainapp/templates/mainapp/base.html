@@ -1,0 +1,127 @@
+{% load staticfiles %}
+{% load static %}
+{% load date_extras %}
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'mainapp/css/styles.css' %}">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row top">
+            <div class="col-2 mid-left">
+                <div class="title"><a href="/" >dojolist</a></div><br>
+                <a href="/post/new">create a post</a><br>
+                <a href="/myaccount">my account</a><br>
+                <hr>
+
+                <form action="/update" method="POST">
+                    {%csrf_token%}
+                    <div class="form-group indent">
+                        <select name="community" required>
+                            <option value="seattle" {% if community == 'seattle' %}selected{% endif %}>Seattle</option>
+                            <option value="dallas" {% if community == 'dallas' %}selected{% endif %}>Dallas</option>
+                            <option value="philadelphia" {% if community == 'philadelphia' %}selected{% endif %}>Philadelphia</option>
+                        </select>
+                    </div>
+                    <input class="btn btn-outline-primary btn-sm" type="submit" value="Update">
+                </form>
+
+                {% block mid-left %}
+
+                {% endblock %}
+            </div>
+            <div class="col-7 mid-center">
+                {% block mid-center %}
+
+                {% endblock %}
+
+                <div class="inner-container">
+                    <div class="row">
+                        <div class="col inner-box">
+                            {% block inner-top-left %}
+
+                            {% endblock %}
+                        </div>
+                        <div class="col inner-box">
+                            {% block inner-top-right %}
+                            
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col inner-box">
+                            {% block inner-bot-left %}
+                            
+                            {% endblock %}
+                        </div>
+                        <div class="col inner-box">
+                            {% block inner-bot-right %}
+                            
+                            {% endblock %}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+
+                            {% block lower-box %}
+                            
+                            {% endblock %}
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-3 mid-right">
+                <br>
+
+                Upcoming Events:<br>
+                {{ 0|addDays|date:"M j" }}<br>
+                {{ 1|addDays|date:"M j" }}<br>
+                {{ 2|addDays|date:"M j" }}<br>
+                <a href="/calendar">Calendar</a><br>
+                <!-- used custom template tag on date_extras.py to calculate the future days -->
+                <hr>
+                
+                {% block mid-right %}
+
+                {% endblock %}
+                
+                <form action="{% url 'mainapp:search_results' %}" method="get">
+                    <input name="q" type="text" placeholder="Search...">
+                </form>
+            
+            </div>
+        </div>
+        <div class="row calendar">
+            <div class="col-2 lower-left"></div>
+            <div class="col-7 lower-left">{% block calendar %}{% endblock %}</div>
+            <div class="col-3 lower-left"></div>
+
+        </div>
+    </div>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+    {% block javascript %}
+
+    {% endblock %}
+</body>
+</html>
